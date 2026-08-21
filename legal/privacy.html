@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy — Readory</title>
+  <link rel="icon" href="../app-icon.png" />
+  <style>
+    :root {
+      --ink: #33271C;
+      --soft: #7C6B5B;
+      --faint: #AB9C8C;
+      --paper: #FFFBF5;
+      --marigold: #F5A524;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 40rem; margin: 0 auto; padding: 28px 28px 72px; }
+    a { color: var(--ink); font-weight: 600; }
+    a:hover { color: var(--marigold); }
+    .back {
+      display: inline-block;
+      margin-bottom: 36px;
+      color: var(--soft);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 36px;
+      letter-spacing: -0.03em;
+      margin: 0 0 8px;
+    }
+    .meta { color: var(--faint); font-size: 14px; margin: 0 0 28px; }
+    h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 22px;
+      margin: 2rem 0 0.6rem;
+    }
+    p, li { color: var(--soft); font-size: 16px; }
+    ul { padding-left: 1.15rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">← Readory</a>
+    <h1>Privacy</h1>
+    <p class="meta">Last updated: August 2026</p>
+
+    <p>Readory is a children’s reading journal for families. A parent or guardian manages the account. We do not sell personal information and we do not show advertising to children.</p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li>Account (email, or sign-in with Apple or Google)</li>
+      <li>Child profiles you add (first name, age or birth year, optional photo)</li>
+      <li>Reading journal (titles, authors, covers, dates, notes, time)</li>
+      <li>Optional location, only if you turn it on, for nearby libraries and the right stores</li>
+      <li>Apple purchase and subscription status (not your full payment details)</li>
+      <li>Basic diagnostics to keep the app working</li>
+    </ul>
+
+    <h2>How we use it</h2>
+    <ul>
+      <li>To keep your journal, Discover, and Living Library on this device — and across devices when you sign in</li>
+      <li>To suggest books from what you have already logged</li>
+      <li>If you subscribe to Readory Pro, to run librarian features through our backend. API keys never live in the app</li>
+      <li>To restore purchases</li>
+    </ul>
+    <p>We do not use children’s reading data to advertise to them.</p>
+
+    <h2>Children</h2>
+    <p>The signed-in adult is the account holder. Child profiles exist so the journal can be age-right. A child does not need their own account.</p>
+
+    <h2>Third parties</h2>
+    <ul>
+      <li>Apple — sign-in, purchases</li>
+      <li>Google — optional sign-in</li>
+      <li>Supabase — account and synced journal</li>
+      <li>An AI provider, only when you use a Pro librarian feature, with the book facts needed for that request</li>
+    </ul>
+    <p>Book metadata may come from public catalogs. Those lookups use a book identifier or title — not your child’s name.</p>
+
+    <h2>Export and delete</h2>
+    <p>Settings → Privacy &amp; Data. Deleting the app does not delete a signed-in cloud account. Use Delete everything, or write to us.</p>
+
+    <h2>Location</h2>
+    <p>Optional. A one-time check can show nearby libraries and the right stores for your country. We do not use location to track children.</p>
+
+    <h2>Changes</h2>
+    <p>We may update this policy. The date at the top will change when we do.</p>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:support@ireadit.app">support@ireadit.app</a></p>
+  </div>
+</body>
+</html>
