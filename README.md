@@ -1,6 +1,6 @@
-# Readory
+# ReadiBean
 
-Marketing and support site for Readory.
+Marketing and support site for ReadiBean.
 
 Live: `https://pxcheng-dot.github.io/readory-support/`
 
