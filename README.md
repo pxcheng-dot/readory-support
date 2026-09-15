@@ -7,4 +7,4 @@ Live: `https://pxcheng-dot.github.io/readory-support/`
 - Home + support: `index.html`
 - Privacy: `legal/privacy.html`
 
-Support: [support@ireadit.app](mailto:support@ireadit.app)
+Support: [support@readibean.app](mailto:support@readibean.app)
