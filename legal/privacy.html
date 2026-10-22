@@ -4,29 +4,109 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Policy — ReadiBean</title>
+  <meta name="color-scheme" content="only light" />
+  <meta name="theme-color" content="#FFFBF5" />
+  <link rel="icon" href="../app-icon.png?v=2" />
   <style>
-    [data-custom-class='body'], [data-custom-class='body'] * { background: transparent !important; }
-    [data-custom-class='title'], [data-custom-class='title'] * { font-family: Arial !important; font-size: 26px !important; color: #000 !important; }
-    [data-custom-class='subtitle'], [data-custom-class='subtitle'] * { font-family: Arial !important; color: #595959 !important; font-size: 14px !important; }
-    [data-custom-class='heading_1'], [data-custom-class='heading_1'] * { font-family: Arial !important; font-size: 19px !important; color: #000 !important; }
-    [data-custom-class='heading_2'], [data-custom-class='heading_2'] * { font-family: Arial !important; font-size: 17px !important; color: #000 !important; }
-    [data-custom-class='body_text'], [data-custom-class='body_text'] * { color: #595959 !important; font-size: 14px !important; font-family: Arial !important; }
-    [data-custom-class='link'], [data-custom-class='link'] * { color: #3030F1 !important; font-size: 14px !important; font-family: Arial !important; word-break: break-word !important; }
-    body { font-family: Arial, Helvetica, sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1.25rem 4rem; line-height: 1.55; color: #000; }
-    h1 { font-size: 26px; }
-    h2 { font-size: 19px; margin-top: 2rem; }
-    h3 { font-size: 17px; margin-top: 1.4rem; }
-    p, li { color: #595959; font-size: 14px; }
-    a { color: #3030F1; }
-    .meta { color: #595959; font-size: 14px; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 1rem 0; }
-    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; color: #595959; }
-    th { color: #000; }
-    ul { padding-left: 1.2rem; }
+    /* Same paper and ink as the home page. The page always draws its own light
+       background, so a dark app or browser theme can't turn the text unreadable. */
+    :root {
+      color-scheme: only light;
+      --ink: #33271C;
+      --text: #4A3C2F;
+      --soft: #7C6B5B;
+      --paper: #FFFBF5;
+      --wash: #FFF6E8;
+      --link: #8A5100;
+      --line: rgba(51, 39, 28, 0.12);
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+    }
+    .page { max-width: 46rem; margin: 0 auto; padding: 8px 24px 72px; }
+
+    .site-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 251, 245, 0.94);
+      -webkit-backdrop-filter: saturate(1.4) blur(10px);
+              backdrop-filter: saturate(1.4) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-bar-inner {
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 10px 24px;
+      padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--wash);
+      color: var(--ink);
+      font: 500 14px/1.2 var(--sans);
+      text-decoration: none;
+    }
+    .back:hover { background: #FFEFD6; color: var(--ink); }
+    .back img { width: 22px; height: 22px; border-radius: 6px; }
+    .back-foot { margin-top: 48px; }
+
+    h1, h2, h3, th, strong { color: var(--ink); }
+    h1 {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      margin: 32px 0 4px;
+    }
+    h2 { font-size: 16px; line-height: 1.4; letter-spacing: 0.01em; margin: 2.4rem 0 0.6rem; }
+    h3 { font-size: 15px; line-height: 1.4; margin: 1.6rem 0 0.4rem; }
+    h2, h3 { scroll-margin-top: 80px; }
+    p, li { color: var(--text); }
+    .meta { color: var(--soft); font-size: 14px; margin-top: 0; }
+    .note { margin-top: 2.5rem; color: var(--soft); font-size: 12px; }
+    a { color: var(--link); text-underline-offset: 2px; word-break: break-word; }
+    a:hover { color: var(--ink); }
+    :focus-visible { outline: 2px solid #F5A524; outline-offset: 3px; border-radius: 4px; }
+    ul, ol { padding-left: 1.3rem; }
+    li + li { margin-top: 4px; }
     .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 1rem 0; }
+    th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+    td { color: var(--text); }
+    th { background: var(--wash); }
+    @media (max-width: 560px) {
+      .table-scroll { overflow-x: auto; margin: 1rem -24px; padding: 0 24px; }
+      .table-scroll table { margin: 0; min-width: 520px; }
+    }
   </style>
 </head>
 <body data-custom-class="body">
+  <header class="site-bar">
+    <div class="site-bar-inner">
+      <a class="back" href="../" data-back><img src="../app-icon.png?v=2" alt="" width="22" height="22" /><span aria-hidden="true">←</span> Back to ReadiBean</a>
+    </div>
+  </header>
+  <main class="page">
   <h1 data-custom-class="title">PRIVACY POLICY</h1>
   <p class="meta" data-custom-class="subtitle">Last updated August 21, 2026</p>
 
@@ -188,7 +268,7 @@
   <p data-custom-class="body_text"><strong>In Short:</strong> <em>Residents of certain US states may have rights to know, access, correct, delete, or obtain a copy of personal information, and to opt out of sale, sharing for targeted ads, or certain profiling. We do not sell personal information and we do not share it for targeted advertising.</em></p>
   <h3 data-custom-class="heading_2">Categories of Personal Information We Collect</h3>
   <p data-custom-class="body_text">The table covers the past twelve (12) months. Examples are illustrative. See Section 1 for what we actually collect in ReadiBean.</p>
-  <table>
+  <div class="table-scroll"><table>
     <thead>
       <tr><th>Category</th><th>Examples</th><th>Collected</th></tr>
     </thead>
@@ -206,7 +286,7 @@
       <tr><td>K. Inferences</td><td>Book suggestions from books you logged</td><td>YES</td></tr>
       <tr><td>L. Sensitive personal information</td><td>Account login; children’s information; optional precise-enough location; optional photos</td><td>YES</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p data-custom-class="body_text">We do not collect or process sensitive personal information to infer characteristics about a child for advertising. We retain account-related categories for as long as you have an account, unless you delete them sooner.</p>
   <p data-custom-class="body_text"><strong>Sale and sharing.</strong> We have not sold or shared personal information for targeted advertising in the preceding twelve months, and we will not sell personal information of families who use ReadiBean.</p>
   <p data-custom-class="body_text"><strong>Your rights</strong> may include the right to know, access, correct, delete, obtain a copy, and non-discrimination. You may designate an authorized agent. We will verify your identity before fulfilling a request.</p>
@@ -229,6 +309,36 @@
 
   <h2 id="request" data-custom-class="heading_1">16. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
   <p data-custom-class="body_text">Use Settings → Privacy &amp; Data in ReadiBean, or email <a href="mailto:support@readibean.app">support@readibean.app</a>. We will handle requests in line with applicable law. Rights may be limited in some circumstances.</p>
-  <p data-custom-class="body_text" style="margin-top: 2.5rem; color: #8a8a8a; font-size: 12px;">This Privacy Policy follows the same structure as our other product notices and was adapted from a Termly-generated template for ReadiBean’s actual practices.</p>
+  <p class="note" data-custom-class="body_text">This Privacy Policy follows the same structure as our other product notices and was adapted from a Termly-generated template for ReadiBean’s actual practices.</p>
+  <p class="back-foot"><a class="back" href="../" data-back><span aria-hidden="true">←</span> Back to ReadiBean</a></p>
+  </main>
+  <script>
+    // "Back to ReadiBean" returns to the exact spot on the page you came from.
+    // Opened directly (from the app, a search result, a new tab) it goes to the
+    // home page instead. Contents links jump without adding back steps, so one
+    // tap on Back always leaves this page.
+    (function () {
+      var ref = document.referrer, here = location.href.split("#")[0];
+      var cameFromSite = ref && location.origin !== "null" &&
+        ref.indexOf(location.origin + "/") === 0 && ref.split("#")[0] !== here;
+      document.addEventListener("click", function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var a = e.target.closest && e.target.closest("a");
+        if (!a) return;
+        if (a.hasAttribute("data-back")) {
+          if (cameFromSite && history.length > 1) { e.preventDefault(); history.back(); }
+          return;
+        }
+        var hash = a.getAttribute("href") || "";
+        if (hash.charAt(0) === "#" && hash.length > 1) {
+          var target = document.getElementById(hash.slice(1));
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          try { history.replaceState(null, "", hash); } catch (err) {}
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
