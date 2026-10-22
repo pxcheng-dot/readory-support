@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ReadiBean: Family Reading — Paper books. A family habit.</title>
-  <meta name="description" content="A reading journal for families on iPhone and iPad. Scan the paper books you read together, keep every story, build the habit, and find the next favourite." />
-  <meta property="og:title" content="ReadiBean — Paper books. A family habit." />
-  <meta property="og:description" content="Scan the stories you share. Keep every one. Find the next favourite." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#FFFBF5" />
-  <link rel="icon" href="app-icon.png?v=2" />
-  <link rel="apple-touch-icon" href="app-icon.png?v=2" />
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>ReadiBean — The reading app that wants you to put it down</title>
+  <meta content="ReadiBean is a family reading journal for paper books, for children from birth to twelve. Scan the book, put the phone down, and read together. A timeline of every story, a gentle habit, picks for the next favourite, and rewards for real reading. iPhone and iPad." name="description"/>
+  <link href="https://readibean.app/" rel="canonical"/>
+  <meta content="app-id=6801960173" name="apple-itunes-app"/>
+  <meta content="website" property="og:type"/>
+  <meta content="ReadiBean" property="og:site_name"/>
+  <meta content="https://readibean.app/" property="og:url"/>
+  <meta content="ReadiBean — The reading app that wants you to put it down" property="og:title"/>
+  <meta content="Paper books. A family habit. Scan the story you share, put the phone down, and read together." property="og:description"/>
+  <meta content="https://readibean.app/og-image.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="ReadiBean: Paper books. A family habit. The reading app that wants you to put it down." property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="ReadiBean — The reading app that wants you to put it down" name="twitter:title"/>
+  <meta content="Paper books. A family habit. Scan the story you share, put the phone down, and read together." name="twitter:description"/>
+  <meta content="https://readibean.app/og-image.png" name="twitter:image"/>
+  <meta content="#FFFBF5" name="theme-color"/>
+  <link href="app-icon.png?v=2" rel="icon"/>
+  <link href="app-icon.png?v=2" rel="apple-touch-icon"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "ReadiBean: Family Reading",
+    "url": "https://readibean.app/",
+    "image": "https://readibean.app/app-icon.png",
+    "description": "A family reading journal for paper books, for children from birth to twelve.",
+    "operatingSystem": "iOS 17.6 or later, iPadOS 17.6 or later",
+    "installUrl": "https://apps.apple.com/app/id6801960173",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
   <style>
     :root {
       --ink: #33271C;
@@ -24,6 +49,8 @@
       --line-soft: rgba(51, 39, 28, 0.06);
       --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --col: 720px;
+      --gutter: 28px;
     }
 
     * { box-sizing: border-box; }
@@ -50,10 +77,47 @@
       border-radius: 4px;
     }
 
+    [hidden] { display: none !important; }
+
+    /* A text cleared in the site editor takes no space. */
+    .eyebrow:empty, .subtitle:empty, .lede:empty, .fineprint:empty, .kicker:empty,
+    .section-lede:empty, .gallery-hint:empty, .event-fine:empty, .makers:empty { display: none; }
+
     .wrap {
-      max-width: 720px;
+      max-width: var(--col);
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 var(--gutter);
+    }
+
+    .kicker {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--marigold-deep);
+      margin: 0 0 12px;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 10px;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .section-title br { display: none; }
+    }
+
+    .section-lede {
+      text-align: center;
+      color: var(--soft);
+      margin: 0 auto 40px;
+      max-width: 28rem;
     }
 
     /* ---------- Nav ---------- */
@@ -62,6 +126,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       padding: 28px 0 8px;
     }
 
@@ -84,12 +149,17 @@
 
     .nav-links {
       display: flex;
-      gap: 22px;
+      gap: 20px;
       font-size: 14px;
     }
 
-    .nav-links a { text-decoration: none; color: var(--soft); }
+    .nav-links a { text-decoration: none; color: var(--soft); white-space: nowrap; }
     .nav-links a:hover { color: var(--ink); }
+
+    @media (max-width: 420px) {
+      .nav-links { gap: 14px; font-size: 13px; }
+      .nav-links .optional { display: none; }
+    }
 
     /* ---------- Hero ---------- */
 
@@ -113,12 +183,23 @@
       font-size: clamp(42px, 8vw, 66px);
       line-height: 1.04;
       letter-spacing: -0.03em;
-      margin: 0 0 20px;
+      margin: 0 0 18px;
+    }
+
+    .hero .subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(21px, 3.8vw, 27px);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--marigold-deep);
+      margin: 0 auto 22px;
+      max-width: 36rem;
     }
 
     .hero p.lede {
       margin: 0 auto;
-      max-width: 28rem;
+      max-width: 29rem;
       color: var(--soft);
       font-size: 18px;
     }
@@ -164,6 +245,86 @@
       color: var(--faint);
     }
 
+    /* ---------- Event card (time-limited) ---------- */
+
+    .event {
+      margin: 8px auto 0;
+      padding: 26px 26px 22px;
+      border: 1px solid rgba(199, 127, 10, 0.28);
+      border-radius: 18px;
+      background: var(--wash);
+    }
+
+    .event .event-kicker {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--marigold-deep);
+      margin: 0 0 6px;
+    }
+
+    .event h2 {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin: 0 0 6px;
+    }
+
+    .event > p {
+      margin: 0 0 16px;
+      color: var(--soft);
+      font-size: 15px;
+    }
+
+    .tiers {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .tiers { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .tiers li {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 14px 12px;
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .tiers .bar {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--marigold-deep);
+      margin-bottom: 4px;
+    }
+
+    .tiers strong {
+      display: block;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .event .event-fine {
+      margin: 14px 0 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--faint);
+    }
+
     /* ---------- Fleuron divider ---------- */
 
     .fleuron {
@@ -199,6 +360,46 @@
 
     .interlude em { color: var(--marigold-deep); font-style: italic; }
 
+    /* ---------- Gallery ---------- */
+
+    .gallery-section { padding: 64px 0 8px; }
+
+    .gallery {
+      --inset: max(var(--gutter), calc((100% - var(--col)) / 2 + var(--gutter)));
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: min(88vw, 620px);
+      gap: 16px;
+      margin: 0;
+      padding: 6px var(--inset) 22px;
+      list-style: none;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--inset);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(51, 39, 28, 0.18) transparent;
+    }
+
+    .gallery li { scroll-snap-align: start; }
+
+    .gallery img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1280 / 766;
+      border-radius: 16px;
+      background: var(--wash);
+      box-shadow: 0 1px 2px rgba(51, 39, 28, 0.08), 0 8px 24px rgba(51, 39, 28, 0.10);
+    }
+
+    .gallery-hint {
+      text-align: center;
+      font-size: 13px;
+      color: var(--faint);
+      margin: 0;
+    }
+
     /* ---------- Moments ---------- */
 
     .moments {
@@ -207,7 +408,7 @@
       background: var(--line-soft);
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      margin: 48px -28px 0;
+      margin: 0 calc(var(--gutter) * -1);
     }
 
     @media (min-width: 640px) {
@@ -216,7 +417,7 @@
 
     .moment {
       background: var(--paper);
-      padding: 32px 28px 32px 0;
+      padding: 32px var(--gutter);
     }
 
     @media (min-width: 640px) {
@@ -234,7 +435,7 @@
       margin-bottom: 8px;
     }
 
-    .moment h2 {
+    .moment h3 {
       font-family: var(--serif);
       font-size: 23px;
       font-weight: 500;
@@ -247,6 +448,8 @@
       color: var(--soft);
       font-size: 15px;
     }
+
+    #how { padding-top: 72px; }
 
     /* ---------- Pull line ---------- */
 
@@ -267,35 +470,86 @@
 
     .pull blockquote .accent { color: var(--marigold-deep); }
 
+    /* ---------- Plans ---------- */
+
+    #plans { padding: 88px 0 0; }
+
+    .plans {
+      display: grid;
+      gap: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .plans { grid-template-columns: 1fr 1fr; }
+    }
+
+    .plan {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px 24px 20px;
+      background: var(--paper);
+    }
+
+    .plan.pro {
+      background: var(--wash);
+      border-color: rgba(199, 127, 10, 0.28);
+    }
+
+    .plan h3 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0 0 2px;
+    }
+
+    .plan .price {
+      font-size: 13px;
+      color: var(--faint);
+      margin: 0 0 14px;
+    }
+
+    .plan ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .plan li {
+      position: relative;
+      padding: 7px 0 7px 22px;
+      font-size: 15px;
+      color: var(--soft);
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .plan li:first-child { border-top: 0; }
+
+    .plan li::before {
+      content: "❦";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      font-size: 12px;
+      color: var(--marigold);
+    }
+
+    .plan li b { color: var(--ink); font-weight: 600; }
+
+    .plans-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--faint);
+      margin: 16px auto 0;
+      max-width: 34rem;
+    }
+
+    .plans-note a { color: var(--soft); }
+
     /* ---------- Support ---------- */
 
     #support { padding: 88px 0 40px; }
 
-    #support .kicker {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--marigold-deep);
-      margin: 0 0 12px;
-    }
-
-    #support h2 {
-      font-family: var(--serif);
-      font-size: 34px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      margin: 0 0 10px;
-      text-align: center;
-    }
-
-    #support > .lede {
-      text-align: center;
-      color: var(--soft);
-      margin: 0 auto 48px;
-      max-width: 26rem;
-    }
+    #support .section-title { margin-bottom: 36px; }
 
     .support-list {
       display: grid;
@@ -407,6 +661,14 @@
       margin: 0 0 22px;
     }
 
+    .closing .makers {
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 13px;
+      color: var(--faint);
+      margin: 22px 0 0;
+    }
+
     /* ---------- Footer ---------- */
 
     footer {
@@ -434,183 +696,248 @@
       }
       .rise.d1 { animation-delay: 0.08s; }
       .rise.d2 { animation-delay: 0.16s; }
+      .rise.d3 { animation-delay: 0.24s; }
       @keyframes rise {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: none; }
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <nav>
-      <a class="wordmark" href="https://apps.apple.com/app/id6801960173" title="Get ReadiBean on the App Store">
-        <img src="app-icon.png?v=2" alt="" width="36" height="36" />
+<div class="wrap">
+<nav>
+<a class="wordmark" href="https://apps.apple.com/app/id6801960173" title="Get ReadiBean on the App Store">
+<img alt="" height="36" src="app-icon.png?v=2" width="36">
         ReadiBean
       </a>
-      <div class="nav-links">
-        <a href="#support">Support</a>
-        <a href="legal/privacy.html">Privacy</a>
-      </div>
-    </nav>
+<div class="nav-links">
+<a class="optional" href="#how">How it works</a>
+<a data-event="cbw-2026" href="#book-week">Book Week</a>
+<a href="#support">Support</a>
+<a href="legal/privacy.html">Privacy</a>
+</div>
+</nav>
+<header class="hero" id="top">
+<p class="eyebrow rise"></p>
+<h1 class="rise">Paper books.<br>A family habit.</h1>
+<p class="subtitle rise d1">The reading app that wants you to put&nbsp;it&nbsp;down.</p>
+<p class="lede rise d2">Scan the book you’re reading together, then put the phone away. ReadiBean keeps every story, builds the habit, and finds the next favourite.</p>
+<div class="cta rise d3">
+<a class="btn primary" href="https://apps.apple.com/app/id6801960173">Get it on the App&nbsp;Store</a>
+<a class="btn ghost" href="#how">How it works</a>
+</div>
+<p class="fineprint rise d3"><b>Free for iPhone and iPad</b> · iOS 17.6 or later · For children from birth to twelve · US, UK, Canada, Australia and New Zealand</p>
+</header>
+<!-- Time-limited. Hidden automatically from 16 Nov 2026 (script at the end of the page); safe to delete after that. -->
+<section aria-labelledby="book-week-title" class="event" data-event="cbw-2026" id="book-week">
+<p class="event-kicker">In the app · Oct 26 – Nov 15</p>
+<h2 id="book-week-title">The Children’s Book Week reading challenge</h2>
+<p>Twenty-one days of paper books. Read together, scan the book, and the rewards open as the days add up.</p>
+<ul class="tiers">
+<li><span class="bar">5 reading days</span><strong>A printable bookmark</strong><span class="tier-text">Then every free bean counts double until the challenge ends.</span></li>
+<li><span class="bar">12 days · 7 different books</span><strong>Nine-Tail</strong><span class="tier-text">The youngest white fox of Qingqiu Mountain, a companion earned by reading and yours to keep.</span></li>
+<li><span class="bar">21 of 21 days</span><strong>A $10 book card</strong><span class="tier-text">With 21 different books, or 10 with Pro. Claim it in the app from Dec 15.</span></li>
+</ul>
+<p class="event-fine">One child counts for the household: the reader with the most reading days. Only scanned paper books count. The 10-book bar needs Pro on Nov 15 and a paid Pro subscription when you claim (a free trial doesn’t count). Pro families also earn extra golden beans at 12 and 21 days. The card is in your App Store’s currency (£10 in the UK), from a store available in your country. Apple and Amazon are not sponsors.</p>
+</section>
+<div aria-hidden="true" class="fleuron">❦</div>
+<p class="interlude">Every night, a small voice asks for <em>one more</em>. ReadiBean is for those nights. Thirty seconds to log the story, then the phone goes face down and the book does the rest.</p>
+</div>
+<section aria-label="ReadiBean on iPhone and iPad" class="gallery-section">
+<ul aria-label="ReadiBean on iPhone and iPad, scroll sideways" class="gallery" tabindex="0">
+<li><img alt="Paper books. A habit that sticks. Science-backed. Built by psychology researchers, parents of two: a bedtime cue, tips matched to your child’s reading level, and no streak guilt. Shown: Goodnight Nest on iPad and Tonight’s ritual on iPhone." decoding="async" height="766" src="images/01-habit.webp" width="1280"></li>
+<li><img alt="Scan the barcode. Your library builds itself. Every paper book you read lands on your family’s shelf. Shown: the Reading Room on iPad and Add Book on iPhone." decoding="async" height="766" loading="lazy" src="images/02-scan.webp" width="1280"></li>
+<li><img alt="Keep the voice they had at four. Their voice stays with the book. Hear it again in ten years. Shown: a voice memory on a book’s page on iPad and a recording on iPhone." decoding="async" height="766" loading="lazy" src="images/03-voice.webp" width="1280"></li>
+<li><img alt="Every real book wakes the library. Magical companions read alongside your child. Shown: the Living Library’s Memory Garden on iPad and Hearth Hall on iPhone." decoding="async" height="766" loading="lazy" src="images/04-library.webp" width="1280"></li>
+<li><img alt="Stories from every culture, picked for your child. Around the world. All year. Each pick with a reason and a library to borrow from. Shown: a Black History Month rail on iPad and Get this book on iPhone." decoding="async" height="766" loading="lazy" src="images/05-discover.webp" width="1280"></li>
+<li><img alt="For parents who love a good chart. Summaries and predictions for books, reading days, and milestones. Shown: Reading Insights on iPad and iPhone." decoding="async" height="766" loading="lazy" src="images/06-insights.webp" width="1280"></li>
+</ul>
+<p aria-hidden="true" class="gallery-hint">Swipe for more →</p>
+</section>
+<div class="wrap">
+<section aria-labelledby="how-title" id="how">
+<p class="kicker">How it works</p>
+<h2 class="section-title" id="how-title">Thirty seconds on the phone. <br>The rest is the book.</h2>
+<p class="section-lede">Everything in ReadiBean starts with a real book in your hands.</p>
+<div class="moments">
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter i</span>
+<h3>Scan, then close.</h3>
+<p>Point the camera at the barcode or ISBN. ReadiBean fills in the details, and tells you if you’ve read it before. Then the phone goes away, and the book opens.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter ii</span>
+<h3>Keep every story, and their voice.</h3>
+<p>One timeline of the paper books you read together. Pinch from a single night out to a whole childhood. Record a bedtime reading and keep it with the book, so years from now they can still hear it.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter iii</span>
+<h3>Make it a habit.</h3>
+<p>Tonight’s ritual with research-informed tips, gentle reminders, streaks, goals and badges. After a few weeks, predictions show where reading is heading, as honest ranges. No guilt, no nagging.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter iv</span>
+<h3>Worlds that grow with reading.</h3>
+<p>Goodnight Nest, a cosy bedtime ritual for ages one to four. The Living Library, a story world of rooms and mysteries, with a companion of their choosing. Real reading moves them; nothing else does.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter v</span>
+<h3>Find the next favourite.</h3>
+<p>Picks shaped around this child’s tastes and reading level, a new topic every day, award winners, rhymes and songs, and festivals from around the world. See new and used copies, or check a nearby library.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter vi</span>
+<h3>Build a family library.</h3>
+<p>Every finished book takes its place on the shelves of your Reading Room, and the next reads wait on notes. Open the Library, the Playroom and the Conservatory with beans, as a pack, or with Pro.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter vii</span>
+<h3>Real books, real rewards.</h3>
+<p>Every scanned book plants beans. Spend them to open companions and rooms. Pro families also earn golden beans toward gift cards.</p>
+</article>
+<article class="moment">
+<span aria-hidden="true" class="chapter">Chapter viii</span>
+<h3>Bring the family.</h3>
+<p>With Pro, up to five people share one live library. Lock Screen and Control Center widgets keep tonight one tap away.</p>
+</article>
+</div>
+</section>
+<div class="pull">
+<blockquote>The phone’s job is thirty seconds.<br> <span class="accent">The book gets the rest of the night.</span></blockquote>
+</div>
+<section aria-labelledby="plans-title" id="plans">
+<p class="kicker">Plans</p>
+<h2 class="section-title" id="plans-title">Free to start. Pro wakes the librarian.</h2>
+<p class="section-lede">ReadiBean Basic is free and complete on its own. Pro adds an AI librarian guided by each child’s real reading, and every paid pack, for the whole family.</p>
+<div class="plans">
+<div class="plan">
+<h3>Basic</h3>
+<p class="price">Free</p>
+<ul>
+<li><b>Add books in seconds</b> by barcode or cover</li>
+<li><b>A timeline for each child</b>, from tonight to all of childhood</li>
+<li><b>Voice memories</b> kept with the book</li>
+<li><b>Rituals, reminders, streaks, goals</b> and badges</li>
+<li><b>Discover</b>: picks, daily topics, where to buy or borrow</li>
+<li><b>Goodnight Nest and the Living Library</b>, free companions and beans</li>
+</ul>
+</div>
+<div class="plan pro">
+<h3>Pro</h3>
+<p class="price">Monthly or yearly · cancel any time</p>
+<ul>
+<li><b>Everything in Basic</b></li>
+<li><b>Week, month and year reports</b> with what to try next</li>
+<li><b>Discover, made personal</b>, and why each book may fit</li>
+<li><b>A tailored pick for tonight</b> and richer book-talk prompts</li>
+<li><b>Every paid companion and room</b> while you’re subscribed</li>
+<li><b>Golden beans</b> toward gift cards</li>
+<li><b>One live library</b> shared by up to five people</li>
+</ul>
+</div>
+</div>
+<p class="plans-note">Pro is an auto-renewing subscription managed through your Apple Account. Prices are shown in the app in your App Store’s currency. Cancel any time in <a href="https://apps.apple.com/account/subscriptions">Subscriptions</a>.</p>
+</section>
+<section aria-labelledby="support-title" id="support">
+<p class="kicker">Support</p>
+<h2 class="section-title" id="support-title">We’re here.</h2>
+<div class="support-list">
+<div class="support-item">
+<h3>Email</h3>
+<p><a href="mailto:support@readibean.app">support@readibean.app</a><br>Thank you for your feedback!</p>
+</div>
+</div>
+<div class="faq">
+<h3 class="faq-title">Common questions</h3>
+<details>
+<summary>Is this for paper books?</summary>
+<p>Yes. ReadiBean is a journal for real, physical books. Scan the barcode or ISBN, and the screen’s job is done. The app wants you to put it down.</p>
+</details>
+<details>
+<summary>What ages is it for?</summary>
+<p>Children from birth to twelve: board books on a lap through the chapter books they read alone. The app is for the grown-up; the child only ever needs the book.</p>
+<p>We made it paper-only on purpose. In the early years, screen time of any kind is linked to poorer outcomes: more screen use at age one predicts delays in communication and problem-solving at two and four (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2808593">Takahashi et al., JAMA Pediatrics, 2023</a>), and in preschoolers heavier screen use is associated with lower integrity in the brain’s language and literacy pathways (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2754101">Hutton et al., JAMA Pediatrics, 2019</a>). Swapping the paper book for an e-book does not fix it: toddlers and parents talk less and share less over tablets than over print (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2751745">Munzer et al., JAMA Pediatrics, 2019</a>), and across dozens of studies children understand stories better on paper than on screen (<a href="https://eric.ed.gov/?id=EJ1301549">Furenes, Kucirkova &amp; Bus, Review of Educational Research, 2021</a>). The thing that helps is the real book, read together. ReadiBean exists to make that the easy and rewarding choice.</p>
+</details>
+<details>
+<summary>Does it work on iPad?</summary>
+<p>Yes. ReadiBean runs on iPhone and iPad with iOS 17.6 or later, and your library syncs between them when you’re signed in.</p>
+</details>
+<details>
+<summary>Does it work on Android?</summary>
+<p>Not yet. An Android version is in development. For now, ReadiBean runs on iPhone and iPad.</p>
+</details>
+<details>
+<summary>Who holds the account?</summary>
+<p>A parent or caregiver. Children get profiles, not their own logins. You can sign in with Apple or Google, or continue as a guest and keep everything on this device. Create an account any time to sync and share.</p>
+</details>
+<details>
+<summary>How many people can share a library?</summary>
+<p>Up to five with Pro. Everyone sees the same shelf, the same timeline and the same milestones, kept in sync in real time. Invite them from Account in Settings.</p>
+</details>
+<details>
+<summary>What are Goodnight Nest and the Living Library?</summary>
+<p>Two reading worlds on the Habits tab. Goodnight Nest is a cosy bedtime ritual for little listeners, best for ages one to four. The Living Library is a story world of rooms and mysteries, best for four to eight, with a companion your child chooses; every real reading moment lights it up. Each child explores one world, and you can change it any time in Settings.</p>
+</details>
+<details>
+<summary>What is the family library?</summary>
+<p>A reading room that grows with you. Each book you finish appears on its shelves, and the books you plan to read next wait on notes. Everyone in your household sees the same room. More rooms, the Library, the Playroom and the Conservatory, open as packs.</p>
+</details>
+<details>
+<summary>What are beans?</summary>
+<p>Beans grow when you scan a paper book you’ve read together: a reading night, a new book, and a bonus for a five-night week. Only scanned books count; typing a title in doesn’t. Spend beans to open companions and rooms. A pack you open is yours to keep.</p>
+<p>Pro families also earn golden beans, which count toward gift cards as a thank-you for reading together. The first card is $5, at 80 reading days, and the Beans page shows everything each card needs. Cards follow one child, the one with the most reading days, and a card earned on Pro needs a paid subscription when you claim it. The Beans page in the app shows your balance, what counts and the rules. Apple and Amazon are not sponsors.</p>
+</details>
+<details>
+<summary>What does Pro include?</summary>
+<p>Every AI feature and every paid pack, for the whole family: week, month and year reports written around each child’s reading, a personal Discover with a reason for each pick, insights with a next step, a tailored pick for tonight and richer book-talk prompts, every paid companion and room while you’re subscribed, golden beans toward gift cards, and one live library shared by up to five people. Pro is a monthly or yearly subscription managed through your Apple Account; cancel any time in <a href="https://apps.apple.com/account/subscriptions">Subscriptions</a>. Everything else in ReadiBean is free.</p>
+</details>
+<details>
+<summary>Can I get a companion or a room without Pro?</summary>
+<p>Yes. Open them with beans, or buy them one at a time. A pack you open or buy is yours to keep.</p>
+</details>
+<details>
+<summary>How do predictions work?</summary>
+<p>After four weeks and twelve books, ReadiBean shows where reading is likely heading: books this week, reading days, the next badge, when Up Next will be finished. Each one is a range, not a promise, and it only gets better the more you log.</p>
+</details>
+<details>
+<summary>Are voice memories private?</summary>
+<p>Yes. Recordings are kept with your household’s library and are only shared with the people you’ve invited. Guests keep recordings on their device only.</p>
+</details>
+<details>
+<summary>Where do the book suggestions come from?</summary>
+<p>From what your child has already loved and their reading level, a curated catalogue of children’s books, award lists, a daily topic and festivals from around the world, and, for Pro families, the librarian’s picks written around your library. “Get this book” shows new and used copies to buy, and nearby libraries where you can check. Finding a library uses your location once, and only if you allow it.</p>
+</details>
+<details>
+<summary>How do I export or delete our data?</summary>
+<p>Settings → Privacy &amp; Data. Export Everything gives you a spreadsheet or PDF of your whole library. Note that deleting the app does not delete a signed-in cloud account: use Delete everything in the app, or email us and we’ll take care of it.</p>
+</details>
+</div>
+</section>
+<div class="closing">
+<p>Tonight’s story is waiting.</p>
+<a class="btn primary" href="https://apps.apple.com/app/id6801960173">Get ReadiBean</a>
+<p class="makers">Made in Australia by two parents who research child development.</p>
+</div>
+<footer>
+<div aria-hidden="true" class="leaf">❦</div><span class="copyright">© 2026 ReadiBean · Made for story time</span><div class="links">
+<a href="legal/privacy.html">Privacy</a>
+<a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms</a>
+<a href="mailto:support@readibean.app">Contact</a>
+</div>
+</footer>
+</div>
 
-    <header class="hero" id="top">
-      <p class="eyebrow rise">A reading journal for families</p>
-      <h1 class="rise">Paper books.<br />A family habit.</h1>
-      <p class="lede rise d1">Scan the stories you share. Keep every one. Build the habit, and find the next favourite.</p>
-      <div class="cta rise d2">
-        <a class="btn primary" href="https://apps.apple.com/app/id6801960173">Get it on the App&nbsp;Store</a>
-        <a class="btn ghost" href="#support">Support</a>
-      </div>
-      <p class="fineprint rise d2">For iPhone and iPad · iOS 17.6 or later · Available in the US, UK, Canada, Australia and New Zealand</p>
-    </header>
-
-    <div class="fleuron" aria-hidden="true">❦</div>
-
-    <p class="interlude">
-      Every night, a small voice asks for <em>one more</em>. ReadiBean is for those
-      nights. A quiet record of everything you’ve read together, and a gentle
-      nudge toward whatever comes next.
-    </p>
-
-    <section class="moments" aria-label="What ReadiBean is for">
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter i</span>
-        <h2>Scan, then close.</h2>
-        <p>Point the camera at the barcode, or snap the cover. Then the phone goes away, and the book opens.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter ii</span>
-        <h2>Remember every story.</h2>
-        <p>One timeline of the paper books you read together. Pinch from a single night out to a whole childhood.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter iii</span>
-        <h2>Make it a habit.</h2>
-        <p>Tonight’s ritual, gentle streaks, reading goals, and badges for the milestones that matter. No guilt, no nagging.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter iv</span>
-        <h2>Worlds that grow with reading.</h2>
-        <p>Goodnight Nest for the littlest readers. The Living Library, with a companion of their choosing, for everyone after. Real reading moves them; nothing else does.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter v</span>
-        <h2>Find the next favourite.</h2>
-        <p>Suggestions shaped around this child’s tastes, award winners, rhymes and songs, and the odd surprise. See where to buy or borrow, including your local library.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter vi</span>
-        <h2>Build a family library.</h2>
-        <p>Every finished book takes its place on the shelf. Watch the reading room fill, then add a playroom and the stacks.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter vii</span>
-        <h2>Keep their voice.</h2>
-        <p>Record a bedtime reading and keep it with the book. Years from now, they can still hear it.</p>
-      </article>
-      <article class="moment">
-        <span class="chapter" aria-hidden="true">Chapter viii</span>
-        <h2>Bring the family.</h2>
-        <p>One library. Up to five people. Every milestone, shared. Lock Screen and Control Center widgets keep tonight one tap away.</p>
-      </article>
-    </section>
-
-    <div class="pull">
-      <blockquote>
-        The phone’s job is thirty seconds.<br />
-        <span class="accent">The book gets the rest of the night.</span>
-      </blockquote>
-    </div>
-
-    <section id="support">
-      <p class="kicker">Support</p>
-      <h2>We’re here.</h2>
-      <p class="lede">Keep it short and we’ll reply. Most questions are answered below.</p>
-
-      <div class="support-list">
-        <div class="support-item">
-          <h3>Email</h3>
-          <p><a href="mailto:support@readibean.app">support@readibean.app</a><br />If something’s broken, include your device and iOS version so we can fix it faster.</p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <h3 class="faq-title">Common questions</h3>
-
-        <details>
-          <summary>Is this for paper books?</summary>
-          <p>Yes. ReadiBean is a journal for real, physical books. Scan the barcode or snap the cover, and the screen’s job is done. The app is built to be put down.</p>
-        </details>
-        <details>
-          <summary>What ages is it for?</summary>
-          <p>Children from birth to about eleven: board books on a lap through the first chapter books read alone. The app is for the grown-up; the child only ever needs the book.</p>
-          <p>We made it paper-only on purpose. In the early years, screen time of any kind is linked to poorer outcomes: more screen use at age one predicts delays in communication and problem-solving at two and four (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2808593">Takahashi et al., JAMA Pediatrics, 2023</a>), and in preschoolers heavier screen use is associated with lower integrity in the brain’s language and literacy pathways (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2754101">Hutton et al., JAMA Pediatrics, 2019</a>). Swapping the paper book for an e-book does not fix it: toddlers and parents talk less and share less over tablets than over print (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2751745">Munzer et al., JAMA Pediatrics, 2019</a>), and across dozens of studies children understand stories better on paper than on screen (<a href="https://eric.ed.gov/?id=EJ1301549">Furenes, Kucirkova &amp; Bus, Review of Educational Research, 2021</a>). The thing that helps is the real book, read together. ReadiBean exists to make that the easy, rewarding choice.</p>
-        </details>
-        <details>
-          <summary>Does it work on iPad?</summary>
-          <p>Yes. ReadiBean runs on iPhone and iPad with iOS 17.6 or later, and your library syncs between them when you’re signed in.</p>
-        </details>
-        <details>
-          <summary>Who holds the account?</summary>
-          <p>A parent or caregiver. Children get profiles, not their own logins. You can sign in with Apple or Google, or start without an account and keep everything on your device.</p>
-        </details>
-        <details>
-          <summary>How many people can share a library?</summary>
-          <p>Up to five: parents, grandparents, whoever reads aloud. Everyone sees the same shelf, the same timeline and the same milestones. Invite them from Settings.</p>
-        </details>
-        <details>
-          <summary>What are Goodnight Nest and the Living Library?</summary>
-          <p>Two reading worlds on the Habits tab. Goodnight Nest is a bedtime ritual for ages one to four. The Living Library is a story world with a companion your child chooses; every real reading moment moves it forward. Each child explores one world, and progress can be shared across the family or kept to one child.</p>
-        </details>
-        <details>
-          <summary>What is the family library?</summary>
-          <p>A reading room that grows with you. Each book you finish appears on its shelves, and the books you plan to read next wait on notes. Everyone in your household sees the same room. More rooms, the playroom and the stacks, can be added as packs.</p>
-        </details>
-        <details>
-          <summary>What does Pro include?</summary>
-          <p>Every AI feature and every paid pack, for the whole family. That means personalised picks on Discover written around your child’s library, weekly, monthly and yearly reading reports, and all companions and rooms while you’re subscribed. Pro is a monthly or yearly subscription managed through your Apple Account; cancel any time in <a href="https://apps.apple.com/account/subscriptions">Subscriptions</a>. Everything else in ReadiBean is free.</p>
-        </details>
-        <details>
-          <summary>Can I buy a companion or a room without Pro?</summary>
-          <p>Yes. Companions and rooms are also sold one at a time as packs. A pack you buy is yours to keep.</p>
-        </details>
-        <details>
-          <summary>Are voice memories private?</summary>
-          <p>Yes. Recordings are kept with your household’s library and are only shared with the people you’ve invited. Guests keep recordings on their device only.</p>
-        </details>
-        <details>
-          <summary>Where do the book suggestions come from?</summary>
-          <p>From what your child has already loved, a curated catalogue of children’s books and award lists, and, for Pro families, AI picks written around your library. “Get this book” shows where to buy, and where to borrow from your local library where we can look it up.</p>
-        </details>
-        <details>
-          <summary>How do I export or delete our data?</summary>
-          <p>Settings → Privacy &amp; Data. Export Everything gives you a spreadsheet or PDF of your whole library. Note that deleting the app does not delete a signed-in cloud account: use Delete everything in the app, or email us and we’ll take care of it.</p>
-        </details>
-        <!--
-        Beans and rewards: uncomment once the build with beans is live on the App Store.
-        <details>
-          <summary>What are beans?</summary>
-          <p>Beans grow when you scan a paper book you’ve read together: one reading night, a new book, a steady week. They open companions and rooms as packs, without buying them. Only scanned books earn beans; typing a title in doesn’t. Pro families also earn golden beans, which count toward bookstore gift cards. The Beans page in the app shows the balance, what counts, and the rules.</p>
-        </details>
-        -->
-      </div>
-    </section>
-
-    <div class="closing">
-      <p>Tonight’s story is waiting.</p>
-      <a class="btn primary" href="https://apps.apple.com/app/id6801960173">Get ReadiBean</a>
-    </div>
-
-    <footer>
-      <div class="leaf" aria-hidden="true">❦</div>
-      © 2026 ReadiBean · Made for story time
-      <div class="links">
-        <a href="legal/privacy.html">Privacy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms</a>
-        <a href="mailto:support@readibean.app">Contact</a>
-      </div>
-    </footer>
-  </div>
+  <script>
+    (function () {
+      if (new Date() >= new Date(2026, 10, 16)) {
+        document.querySelectorAll('[data-event="cbw-2026"]').forEach(function (el) { el.hidden = true; });
+      }
+    })();
+  </script>
 </body>
 </html>
